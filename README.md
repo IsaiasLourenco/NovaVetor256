@@ -215,12 +215,7 @@ projeto não devem ser reproduzidos, redistribuídos ou utilizados
 comercialmente sem autorização.
 
 ------------------------------------------------------------------------
-
-```{=html}
 <p align="center">
-```
-`<strong>`{=html}Vetor256.`</strong>`{=html}`<br>`{=html} Tecnologia que
-resolve problemas reais.
-```{=html}
+  <strong>Vetor256.</strong><br>
+  Tecnologia que resolve problemas reais.
 </p>
-```
