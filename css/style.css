@@ -65,6 +65,11 @@ header {
   align-items: center;
 }
 
+.avaliacoes-texto {
+  display: flex;
+  align-items: center;
+}
+
 .logo img {
   margin-top: -40px;
   width: 145px;
@@ -409,6 +414,108 @@ PROJETO REAL
 }
 
 /* ==============================
+DEPOIMENTO DO PROJETO
+============================== */
+
+.projeto-depoimento {
+  margin-top: 100px;
+  padding-top: 80px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.projeto-depoimento h2 {
+  font-size: 38px;
+  line-height: 1.15;
+  margin: 15px 0 30px;
+}
+
+.depoimento-box {
+  max-width: 850px;
+  padding: 40px;
+  border-left: 3px solid var(--laranja);
+  background: #f7f7f7;
+  border-radius: 8px;
+}
+
+.depoimento-aspas {
+  color: var(--laranja);
+  font-size: 60px;
+  line-height: 0.7;
+  margin-bottom: 20px;
+}
+
+.depoimento-box blockquote {
+  color: #333333;
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.depoimento-autor {
+  display: flex;
+  flex-direction: column;
+}
+
+.depoimento-autor strong {
+  color: #111111;
+  font-size: 16px;
+}
+
+.depoimento-autor span {
+  color: #666666;
+  font-size: 14px;
+}
+
+/* ==============================
+AVALIAÇÃO DO PROJETO
+============================== */
+
+.projeto-avaliacao {
+  margin-top: 100px;
+  padding-top: 80px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.projeto-avaliacao h2 {
+  font-size: 38px;
+  line-height: 1.15;
+  margin: 15px 0 18px;
+}
+
+.projeto-avaliacao > p {
+  color: #555555;
+  font-size: 17px;
+  margin-bottom: 35px;
+}
+
+.avaliacao-box {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 35px;
+  background: #f7f7f7;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+}
+
+.avaliacao-qrcode img {
+  display: block;
+  width: 180px;
+  height: 180px;
+}
+
+.avaliacao-texto h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.avaliacao-texto p {
+  color: #555555;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+/* ==============================
 EXPERIÊNCIA
 ============================== */
 
@@ -546,6 +653,7 @@ footer {
 }
 
 /* Navegação (esquerda) */
+
 .footer-nav {
   display: flex;
   flex-direction: column;
@@ -563,6 +671,7 @@ footer {
 }
 
 /* Logo (direita) */
+
 .footer-brand {
   display: flex;
   flex-direction: column;
@@ -712,6 +821,40 @@ RESPONSIVO
     justify-content: center;
   }
 
+  .projeto-depoimento {
+    margin-top: 70px;
+    padding-top: 60px;
+  }
+
+  .projeto-depoimento h2,
+  .projeto-avaliacao h2 {
+    font-size: 34px;
+  }
+
+  .depoimento-box {
+    padding: 25px;
+  }
+
+  .depoimento-box blockquote {
+    font-size: 17px;
+  }
+
+  .projeto-avaliacao {
+    margin-top: 70px;
+    padding-top: 60px;
+  }
+
+  .avaliacao-box {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .avaliacao-qrcode img {
+    width: 200px;
+    height: 200px;
+  }
+
   .footer-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -734,11 +877,6 @@ RESPONSIVO
     gap: 20px;
   }
 
-  /* .contato-botoes .btn {
-    display: flex;
-    justify-content: center;
-  } */
-
   .footer-logo img {
     width: 130px;
     margin-right: 0px;
@@ -747,6 +885,4 @@ RESPONSIVO
   .footer-text {
     margin-top: -20px;
   }
-}
-
 }
