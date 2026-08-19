@@ -12,6 +12,40 @@
     <link rel="shortcut icon" href="img/ico.png" type="image/x-icon" />
     <title>Vetor256. | Sistemas, Automação e Desenvolvimento Web</title>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://vetor256.com/#empresa",
+        "name": "Vetor256.",
+        "url": "https://vetor256.com/",
+        "logo": "https://vetor256.com/img/FundoTranspII.png",
+        "image": "https://vetor256.com/img/FundoTranspII.png",
+        "description": "A Vetor256. desenvolve sistemas web, automações, APIs e soluções digitais sob medida para empresas em Mogi Guaçu e região.",
+        "telephone": "+55 19 99674-5466",
+        "email": "isaias@vetor256.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua Mococa, 880",
+          "addressLocality": "Mogi Guaçu",
+          "addressRegion": "SP",
+          "postalCode": "13843-184",
+          "addressCountry": "BR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -22.3866509,
+          "longitude": -46.9376133
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Mogi Guaçu"
+        }
+      }
+    </script>
+
+    <meta property="og:type" content="website" />
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vetor256.com/" />
     <meta
@@ -240,13 +274,12 @@
             </p>
 
             <div class="avaliacao-box">
-
-              <!-- <div class="avaliacao-qrcode">
+              <div class="avaliacao-qrcode">
                 <img
-                  src="img/qrcode-google-v2.png"
+                  src="img/qrCodeAvaliacaoGoogle.png"
                   alt="QR Code para avaliar a Vetor256. no Google"
                 />
-              </div> -->
+              </div>
 
               <div class="avaliacao-texto">
                 <h3>Avalie a Vetor256. no Google</h3>
@@ -257,7 +290,7 @@
                 </p>
 
                 <a
-                  href="https://maps.app.goo.gl/kNGsL5yGWnyPpjfL8"
+                  href="https://g.page/r/CUC9Q3DktgkyEAE/review"
                   class="btn btn-primary"
                   target="_blank"
                   rel="noopener"
@@ -348,10 +381,14 @@
               Fale pelo WhatsApp
             </a>
 
-            <a href="mailto:isaias@vetor256.com" class="btn btn-primary">
+            <!-- <a href="mailto:isaias@vetor256.com" class="btn btn-primary">
               <i class="fa-solid fa-envelope"></i>
               Envie um e-mail
-            </a>
+            </a> -->
+            <button type="button" class="btn btn-primary" id="abrir-contato">
+              <i class="fa-solid fa-envelope"></i>
+              Envie uma mensagem
+            </button>
 
             <a
               href="https://www.google.com/maps/place/Vetor256/@-22.3866272,-46.9376558,17z/data=!4m15!1m8!3m7!1s0x94c8562bee338825:0x9456bc1c93a0ebfe!2sR.+Mococa,+880+-+Lot.+Parque+Itacolomi,+Mogi+Gua%C3%A7u+-+SP,+13843-184!3b1!8m2!3d-22.3866272!4d-46.9376558!16s%2Fg%2F11f1z8dsh4!3m5!1s0x94c85707de87a593:0x3209b6e47043bd40!8m2!3d-22.3866509!4d-46.9376133!16s%2Fg%2F11r9tz87dg"
@@ -365,6 +402,69 @@
           </div>
         </div>
       </section>
+
+      <!-- MODAL CONTATO -->
+      <div class="modal-contato" id="modal-contato" aria-hidden="true">
+        <div class="modal-contato-overlay"></div>
+
+        <div
+          class="modal-contato-box"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="titulo-contato"
+        >
+          <button
+            type="button"
+            class="modal-contato-fechar"
+            id="fechar-contato"
+            aria-label="Fechar formulário"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <div class="modal-contato-header">
+            <small>Vamos conversar</small>
+            <h2 id="titulo-contato">Como podemos ajudar?</h2>
+            <p>
+              Conte um pouco sobre o que você precisa. Entraremos em contato
+              para entender melhor seu desafio.
+            </p>
+          </div>
+
+          <form action="enviar-contato.php" method="POST" class="form-contato">
+            <div class="form-grupo">
+              <label for="nome">Seu nome</label>
+              <input type="text" id="nome" name="nome" required />
+            </div>
+
+            <div class="form-grupo">
+              <label for="email">Seu e-mail</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-grupo">
+              <label for="telefone">Telefone / WhatsApp</label>
+              <input type="tel" id="telefone" name="telefone" />
+            </div>
+
+            <div class="form-grupo">
+              <label for="mensagem">O que você precisa?</label>
+              <textarea
+                id="mensagem"
+                name="mensagem"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-paper-plane"></i>
+              Enviar mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- FIM MODAL CONTATO -->
     </main>
 
     <footer>
@@ -400,6 +500,46 @@
   const menu = document.querySelector(".menu");
   const menuLinks = document.querySelectorAll(".menu a");
 
+  const abrirContato = document.getElementById("abrir-contato");
+  const modalContato = document.getElementById("modal-contato");
+  const fecharContato = document.getElementById("fechar-contato");
+  const overlayContato = document.querySelector(".modal-contato-overlay");
+
+  // Máscara para o Telefone
+  const telefone = document.getElementById("telefone");
+
+  telefone.addEventListener("input", () => {
+    let valor = telefone.value.replace(/\D/g, "");
+
+    if (valor.length > 11) {
+      valor = valor.substring(0, 11);
+    }
+
+    if (valor.length > 6) {
+      telefone.value = `(${valor.substring(0, 2)}) ${valor.substring(2, 7)}-${valor.substring(7)}`;
+    } else if (valor.length > 2) {
+      telefone.value = `(${valor.substring(0, 2)}) ${valor.substring(2)}`;
+    } else if (valor.length > 0) {
+      telefone.value = `(${valor}`;
+    }
+  });
+  // Fim da Máscara para o Telefone
+
+  abrirContato.addEventListener("click", () => {
+    modalContato.classList.add("active");
+    modalContato.setAttribute("aria-hidden", "false");
+  });
+
+  fecharContato.addEventListener("click", () => {
+    modalContato.classList.remove("active");
+    modalContato.setAttribute("aria-hidden", "true");
+  });
+
+  overlayContato.addEventListener("click", () => {
+    modalContato.classList.remove("active");
+    modalContato.setAttribute("aria-hidden", "true");
+  });
+
   menuToggle.addEventListener("click", () => {
     const isOpen = menu.classList.toggle("active");
     menuToggle.setAttribute("aria-expanded", isOpen);
@@ -427,6 +567,9 @@
       menuToggle.setAttribute("aria-expanded", "false");
       menuToggle.setAttribute("aria-label", "Abrir menu");
       menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+
+      modalContato.classList.remove("active");
+      modalContato.setAttribute("aria-hidden", "true");
     }
   });
 </script>

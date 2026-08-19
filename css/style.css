@@ -699,6 +699,122 @@ footer {
   font-size: 13px;
 }
 
+.modal-contato {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-contato.active {
+  display: flex;
+}
+
+.modal-contato-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-contato-box {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.modal-contato-fechar {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form-contato {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-grupo label {
+  font-weight: 600;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.form-grupo textarea {
+  resize: vertical;
+}
+
+#abrir-contato {
+  cursor: pointer;
+}
+
+.modal-contato-box {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px;
+  background: linear-gradient(135deg, #111111 0%, #1a110b 35%, #4a2300 70%, #ff5a00 100%);
+  color: #ffffff;
+  border: 1px solid #333333;
+  border-radius: 12px;
+  z-index: 1;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+}
+
+.modal-contato-header {
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--amarelo), var(--laranja)) 1;
+}
+
+.modal-contato-header small {
+  color: var(--amarelo);
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.modal-contato-header h2 {
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 1.15;
+  margin: 10px 0 15px;
+}
+
+.modal-contato-header p {
+  color: #aaaaaa;
+  font-size: 16px;
+}
+
 /* ==============================
 RESPONSIVO
 ============================== */
