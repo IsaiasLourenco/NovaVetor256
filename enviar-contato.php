@@ -1,44 +1,87 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/vendor/autoload.php';
+
+header('Content-Type: application/json; charset=utf-8');
+
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: index.html");
+    echo json_encode([
+        "sucesso" => false,
+        "mensagem" => "Método não permitido."
+    ]);
     exit;
 }
 
-$nome     = trim($_POST["nome"]     ?? "");
-$email    = trim($_POST["email"]    ?? "");
-$telefone = trim($_POST["telefone"] ?? "");
-$mensagem = trim($_POST["mensagem"] ?? "");
+$nome       = trim($_POST["nome"] ?? "");
+$email      = trim($_POST["email"] ?? "");
+$telefone   = trim($_POST["telefone"] ?? "");
+$mensagem   = trim($_POST["mensagem"] ?? "");
 
 if ($nome === "" || $email === "" || $mensagem === "") {
-    die("Preencha todos os campos obrigatórios.");
+    echo json_encode([
+        "sucesso" => false,
+        "mensagem" => "Preencha todos os campos obrigatórios."
+    ]);
+    exit;
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("E-mail inválido.");
+    echo json_encode([
+        "sucesso" => false,
+        "mensagem" => "E-mail inválido."
+    ]);
+    exit;
 }
 
-$para    = "contato@vetor256.com";
+$mail = new PHPMailer(true);
 
-$assunto = "Nova mensagem pelo site - Vetor256.";
+try {
+    $mail->isSMTP();
 
-$corpo   = "
-Nova mensagem recebida pelo site da Vetor256.
+    $mail->Host = 'smtp.titan.email';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'contato@vetor256.com';
+    $mail->Password = 'Vetor256@Empresa';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = 465;
 
-Nome: $nome
-E-mail: $email
-Telefone: $telefone
+    $mail->CharSet = 'UTF-8';
 
-Mensagem:
-$mensagem
-";
+    $mail->setFrom('contato@vetor256.com', 'Site Vetor256');
+    $mail->addAddress('contato@vetor256.com', 'Vetor256');
+    $mail->addReplyTo($email, $nome);
 
-$cabecalhos = "From: contato@vetor256.com\r\n";
-$cabecalhos .= "Reply-To: $email\r\n";
-$cabecalhos .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $mail->isHTML(true);
+    $mail->Subject = 'Novo contato pelo site - ' . $nome;
 
-if (mail($para, $assunto, $corpo, $cabecalhos)) {
-    echo "Mensagem enviada com sucesso!";
-} else {
-    echo "Não foi possível enviar a mensagem.";
+    $mail->Body = '
+        <h2>Novo contato pelo site Vetor256</h2>
+        <p><strong>Nome:</strong> ' . htmlspecialchars($nome) . '</p>
+        <p><strong>E-mail:</strong> ' . htmlspecialchars($email) . '</p>
+        <p><strong>Telefone:</strong> ' . htmlspecialchars($telefone) . '</p>
+        <p><strong>Mensagem:</strong><br>' . nl2br(htmlspecialchars($mensagem)) . '</p>
+    ';
+
+    $mail->AltBody =
+        "Novo contato pelo site Vetor256\n\n" .
+        "Nome: " . $nome . "\n" .
+        "E-mail: " . $email . "\n" .
+        "Telefone: " . $telefone . "\n\n" .
+        "Mensagem:\n" . $mensagem;
+
+    $mail->send();
+
+    echo json_encode([
+        "sucesso" => true,
+        "mensagem" => "Mensagem enviada com sucesso!"
+    ]);
+
+} catch (Exception $e) {
+    echo json_encode([
+        "sucesso" => false,
+        "mensagem" => "Não foi possível enviar a mensagem."
+    ]);
 }

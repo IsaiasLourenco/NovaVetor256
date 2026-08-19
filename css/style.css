@@ -699,6 +699,10 @@ footer {
   font-size: 13px;
 }
 
+.handcursor {
+  cursor: pointer;
+}
+
 .modal-contato {
   display: none;
   position: fixed;
