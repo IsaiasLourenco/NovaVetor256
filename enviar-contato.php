@@ -44,7 +44,7 @@ try {
     $mail->Host = 'smtp.titan.email';
     $mail->SMTPAuth = true;
     $mail->Username = 'contato@vetor256.com';
-    $mail->Password = 'Vetor256@Empresa';
+    $mail->Password = 'Vetor256@Contato';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 
@@ -82,6 +82,6 @@ try {
 } catch (Exception $e) {
     echo json_encode([
         "sucesso" => false,
-        "mensagem" => "Não foi possível enviar a mensagem."
+        "mensagem" => "Erro: " . $mail->ErrorInfo
     ]);
 }

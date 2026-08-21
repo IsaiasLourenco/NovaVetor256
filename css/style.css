@@ -703,6 +703,11 @@ footer {
   cursor: pointer;
 }
 
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+}
+
 .modal-contato {
   display: none;
   position: fixed;

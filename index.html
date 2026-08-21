@@ -266,10 +266,15 @@
             <div class="depoimento-box">
               <div class="depoimento-aspas">“</div>
 
-              <blockquote>[DEPOIMENTO DO DR. OTÁVIO]</blockquote>
+              <blockquote>Tivemos uma experiência excelente trabalhando com a Vetor256. no desenvolvimento do site da nossa clínica.
+                          Desde o início, demonstrou muito profissionalismo, atenção e comprometimento, sempre buscando entender exatamente o que
+                          precisávamos e encontrando as melhores soluções para cada detalhe. A disponibilidade e o suporte também fizeram toda a
+                          diferença: sempre muito acessível, rápido nas respostas e disposto a ajustar o que fosse necessário, independentemente do horário.
+                          É um profissional extremamente competente, responsável e, acima de tudo, alguém em quem você pode confiar.</blockquote>
 
               <div class="depoimento-autor">
-                <strong>Dr. Otávio</strong>
+                <strong>Dr. Otávio F. Neto</strong>
+                <strong>CRO/SP 125.945</strong>
                 <span>FG Odontologia Estética</span>
               </div>
             </div>
@@ -452,6 +457,13 @@
             method="POST"
             class="form-contato"
           >
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="site">Deixe este campo vazio</label>
+              <input type="text" id="site" name="site" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <input type="hidden" id="tempo-formulario" name="tempo_formulario" value="" />
+
             <div class="form-grupo">
               <label for="nome">Seu nome</label>
               <input type="text" id="nome" name="nome" required />
@@ -469,12 +481,7 @@
 
             <div class="form-grupo">
               <label for="mensagem">O que você precisa?</label>
-              <textarea
-                id="mensagem"
-                name="mensagem"
-                rows="5"
-                required
-              ></textarea>
+              <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary handcursor">
@@ -525,6 +532,7 @@
       const fecharContato = document.getElementById("fechar-contato");
       const overlayContato = document.querySelector(".modal-contato-overlay");
       const formContato = document.getElementById("form-contato");
+      const tempoFormulario = document.getElementById("tempo-formulario");
 
       // Máscara para o Telefone
       const telefone = document.getElementById("telefone");
@@ -547,6 +555,8 @@
       // Fim da Máscara para o Telefone
 
       abrirContato.addEventListener("click", () => {
+        tempoFormulario.value = Date.now();
+
         modalContato.classList.add("active");
         modalContato.setAttribute("aria-hidden", "false");
       });
